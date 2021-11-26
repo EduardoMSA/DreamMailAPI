@@ -53,6 +53,8 @@ class NewsSources(Resource):
         data = self.post_parser.parse_args()
         if(not validateNewsSources(data['sources'])):
             return {'message': 'At least one source is not valid'}, 400
+        if(len(data['sources'])>20):
+            return {'message': 'There is a maximum of 20 news sources allowed'}, 400
         writeSources(data['sources'])
 
         return {'message': 'News` sources correctly saved','content':data['sources']}
