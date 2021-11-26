@@ -1,0 +1,185 @@
+{
+	"info": {
+		"_postman_id": "5b3f2979-fabb-441a-8f5f-d4fbbca9b6d1",
+		"name": "DreamMail",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "SendMail",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"from\":\"prueba.de.web.eduardo@gmail.com\",\r\n    \"password\":\"Me294?83\",\r\n    \"to\":\"edmendez98@gmail.com\",\r\n    \"message\":\"Subject: Hi there \\n hola!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/mail/send",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"mail",
+						"send"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SaveMail",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"from\":\"prueba.de.web.eduardo@gmail.com\",\r\n    \"password\":\"Me294?83\",\r\n    \"date\":\"01-Nov-2021\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/mail/fetch",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"mail",
+						"fetch"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetSavedMails",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/mail?from=prueba.de.web.eduardo@gmail.com",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"mail"
+					],
+					"query": [
+						{
+							"key": "from",
+							"value": "prueba.de.web.eduardo@gmail.com"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get News",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"lang\":\"es\",\r\n    \"date\":\"2021-11-25\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/news",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"news"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Saved News",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/news",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"news"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get News Sources",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/news/sources",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"news",
+						"sources"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save News Sources",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"sources\": [\r\n        \"milenio.com\",\r\n        \"jornada.com.mx\",\r\n        \"elpais.com\"\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/news/sources",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"news",
+						"sources"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
