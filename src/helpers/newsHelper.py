@@ -2,6 +2,8 @@ from typing import Dict
 import requests
 from datetime import datetime
 from helpers.newsFile import readSources
+from urllib.request import urlopen 
+import base64
 
 API_KEY = '34e1cbeeb82b432e9807b35cab640300'
 API_HOST = 'https://newsapi.org/v2/everything'
@@ -22,7 +24,9 @@ class NewsHelper:
             'domains':self.sources,
             'from':date_from,
             'language':language,
-            'apiKey':API_KEY
+            'apiKey':API_KEY,
+            'sortBy':'relevancy',
+            'pageSize':25
         }
 
         r = requests.get(API_HOST, payload)
@@ -30,5 +34,11 @@ class NewsHelper:
         if r.status_code != 200:
             raise ConnectionError('There is a problem with the server, please check the news sources')
 
-        return r.json()
+        response = r.json()
+
+        for i in range(len(response['articles'])):
+            image = base64.b64encode(urlopen(response['articles'][i]['urlToImage']).read()).decode('utf-8')
+            response['articles'][i]['image'] = image
+
+        return response
 

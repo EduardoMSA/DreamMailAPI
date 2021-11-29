@@ -3,3 +3,4 @@
 /mails/*
 news/*
 !/mails/dummy.txt
+!/news/dummy.txt
