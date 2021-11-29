@@ -7,9 +7,7 @@ from endpodints.news import News, NewsSources
 
 app = Flask(__name__)
 api = Api(app)
-CORS(app, origins="http://127.0.0.1:8080", allow_headers=[
-    "Content-Type", "Authorization", "Access-Control-Allow-Credentials"],
-    supports_credentials=True)
+CORS(app)
 
 api.add_resource(MailSender, '/mail/send')
 api.add_resource(MailReciever, '/mail/fetch')
