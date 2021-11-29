@@ -1,6 +1,6 @@
 import smtplib
 import imaplib
-from email.parser import Parser
+from email.header import decode_header
 import email
 from typing import List
 
@@ -43,6 +43,15 @@ class Email:
                     message = email.message_from_bytes(response_part[1])
                     mail_id = message['Message-ID']
                     mail_from = message['from']
+                    print('Todo bien')
+                    mail_from_person, encoding = decode_header(message['from'])[0]
+                    mail_address = None
+                    if type(mail_from_person) is not str:
+                        mail_from_person = mail_from_person.decode("utf-8")
+                        mail_address = mail_from[mail_from.find("<")+1:mail_from.find(">")]
+                    if not mail_address:
+                        mail_address = mail_from_person
+                        mail_from_person = None
                     mail_subject = message['subject']
                     mail_date = message['Date']
                     if message.is_multipart():
@@ -54,7 +63,7 @@ class Email:
                     else:
                         mail_content = message.get_payload()
 
-                    mail_item = {'id':mail_id,'from':mail_from,'date':mail_date,'subject':mail_subject,'content':mail_content}
+                    mail_item = {'id':mail_id,'from':mail_address,'from_person':mail_from_person,'date':mail_date,'subject':mail_subject,'content':mail_content}
                     mails.append(mail_item)
             
         return mails
