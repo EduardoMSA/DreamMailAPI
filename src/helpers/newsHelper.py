@@ -38,6 +38,8 @@ class NewsHelper:
 
         for i in range(len(response['articles'])):
             image = base64.b64encode(urlopen(response['articles'][i]['urlToImage']).read()).decode('utf-8')
+            content = response['articles'][i]['content'][:response['articles'][i]['content'].find('[')]
+            response['articles'][i]['content'] = content
             response['articles'][i]['image'] = image
 
         return response
